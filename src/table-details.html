@@ -1,0 +1,21 @@
+<template>
+  <require from="./components/bill"></require>
+  <require from="./components/order-details"></require>
+  <require from="./value-converters/object-keys"></require>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <a click.trigger="back()"><i class="fa fa-arrow-circle-left fa-4x btn-menu" aria-hidden="true"></i></a>
+      <a click.trigger="newOrder()"><i class="fa fa-plus-circle fa-4x btn-menu" aria-hidden="true"></i></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <order-details repeat.for="order of bill.orders | objectKeys" order.bind="order"></order>
+    </div>
+    <div class="col-sm-4">
+      <bill bill.bind="bill" id.bind="tableId">
+      </bill>
+    </div>
+  </div>
+</template>

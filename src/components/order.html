@@ -1,0 +1,27 @@
+<template>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>Product</td>
+            <td>Aantal</td>
+            <td>Prijs</td>
+            <td>Totaal</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="product of order.products">
+            <td>${product.name}</td>
+            <td>${product.amount}</td>
+            <td>&euro; ${product.price.toFixed(2)}</td>
+            <td>&euro; ${(product.amount * product.price).toFixed(2)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-block btn-default" click.trigger="placeOrder()" disabled.bind="order.products.length == 0">Plaats bestelling</button>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aurelia</title>
+</head>
+
+<body aurelia-app="main">
+  <script src="scripts/vendor-bundle.js" data-main="aurelia-bootstrapper"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCyLGcP7x7Jo3rEQFO1vzDLiknfrm_t_CU",
+    authDomain: "wolf-espressobar.firebaseapp.com",
+    databaseURL: "https://wolf-espressobar.firebaseio.com",
+    storageBucket: "wolf-espressobar.appspot.com",
+  };
+  firebase.initializeApp(config);
+  </script>
+  <script src="scripts/app-bundle.js" data-main="aurelia-bootstrapper"></script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<template>
+  <require from="../value-converters/euro"></require>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td>Product</td>
+            <td>Aantal</td>
+            <td>Prijs</td>
+            <td class="text-right">Totaal</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="product of order.products">
+            <td>${product.name}</td>
+            <td>${product.amount}</td>
+            <td>&euro; ${product.price | euro}</td>
+            <td class="text-right">&euro; ${product.amount * product.price | euro}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel-footer clearfix" if.bind="order.time">
+      <span>Bestelling geplaatst om ${order.time}.</span>
+      <div class="pull-right">
+        <button class="btn btn-sm btn-default"><i class="fa fa-pencil"></i></button>
+        <button class="btn btn-sm btn-default"><i class="fa fa-trash"></i></button>
+      </div>
+    </div>
+  </div>
+</template>
