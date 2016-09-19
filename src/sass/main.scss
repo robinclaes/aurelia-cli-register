@@ -1,0 +1,108 @@
+$foregroundWhite: rgba(255,255,255,0.4);
+$backgroundWhite: rgba(255,255,255,0.8);
+$occupied: rgba(133,171,203,0.4);
+$occupiedHover: rgba(133,171,203,0.8);
+
+body{
+  color: #FFF;
+  background-image: url('../images/bg.png');
+  background-size: cover;
+  font-family: 'Comfortaa', cursive;
+}
+
+a{
+  color: $foregroundWhite;
+  &:hover{
+    color:$backgroundWhite;
+  }
+}
+
+button{
+  border-radius: 0px !important;
+}
+
+.btn-menu
+{
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.btn-sm.btn-default{
+  height:100%;
+}
+
+.btn-default{
+  background:rgba(0,0,0,0.4);
+  color: #FFF;
+  height: 15vh;
+  &:hover{
+    background:rgba(0,0,0,0.8);
+    color: #FFF;
+  }
+}
+
+.btn-table
+{
+  margin: 20px 0;
+  color: white;
+  border: 1px solid white;
+  height: 19vh;
+  background: $foregroundWhite;
+  font-size: 6vh;
+  &:hover{
+    background: $backgroundWhite;
+  }
+}
+
+.btn-product
+{
+  margin: 20px 0;
+  color: white;
+  border: 1px solid white;
+  height: 12vh;
+  background: $foregroundWhite;
+  font-size: 3vh;
+  &:hover{
+    background: $backgroundWhite;
+  }
+}
+
+.btn-occupied{
+  background: $occupied;
+  &:hover{
+    background: $occupiedHover;
+    color: white;
+  }
+}
+
+.btn-free{
+
+}
+
+.panel{
+  margin: 10px 0;
+  background: transparent;
+  border-radius: 0;
+  .panel-body{
+    background: rgba(255,255,255,0.4);
+    padding: 5px;
+  }
+  .panel-footer
+  {
+    padding: 5px 5px;
+    margin: 0;
+    background: rgba(255,255,255,0.4);
+  }
+}
+
+.table
+{
+  margin: 0;
+  thead{
+    font-weight: bold;
+  }
+  td{
+    background: rgba(255,255,255,0.8);
+    color: #000;
+  }
+}

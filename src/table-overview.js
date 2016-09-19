@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+
 export class TableOverview {
   tables = [];
 

@@ -1,6 +1,6 @@
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import {Firebase} from 'firebase';
+import firebase from 'firebase';
 
 @inject(Router)
 export class TableDetails {

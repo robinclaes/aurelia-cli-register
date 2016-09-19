@@ -136,8 +136,7 @@
           {
             "name": "firebase",
             "path": "../node_modules/firebase",
-            "main":"firebase",
-            "exports": "firebase"
+            "main":"firebase"
           }
         ]
       }
