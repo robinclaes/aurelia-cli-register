@@ -1,15 +1,6 @@
-import firebase from 'firebase';
-
 export class App {
   constructor(){
-    var firebase = require('firebase');
-    var config = {
-      apiKey: "AIzaSyCyLGcP7x7Jo3rEQFO1vzDLiknfrm_t_CU",
-      authDomain: "wolf-espressobar.firebaseapp.com",
-      databaseURL: "https://wolf-espressobar.firebaseio.com",
-      storageBucket: "wolf-espressobar.appspot.com",
-    };
-    firebase.initializeApp(config);
+    console.log(firebase.database());
   }
 
   configureRouter(config, router) {

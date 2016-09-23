@@ -1,4 +1,5 @@
 import environment from './environment';
+import firebase from 'firebase';
 
 //Configure Bluebird Promises.
 //Note: You may want to use environment-specific configuration.
@@ -10,8 +11,8 @@ Promise.config({
 
 export function configure(aurelia) {
   aurelia.use
-    .standardConfiguration()
-    .feature('resources');
+  .standardConfiguration()
+  .feature('resources');
 
   if (environment.debug) {
     aurelia.use.developmentLogging();
@@ -19,8 +20,14 @@ export function configure(aurelia) {
 
   if (environment.testing) {
     aurelia.use.plugin('aurelia-testing');
-      aurelia.use.plugin('firebase');
   }
+
+  firebase.initializeApp({
+    apiKey: "AIzaSyCyLGcP7x7Jo3rEQFO1vzDLiknfrm_t_CU",
+    authDomain: "wolf-espressobar.firebaseapp.com",
+    databaseURL: "https://wolf-espressobar.firebaseio.com",
+    storageBucket: "wolf-espressobar.appspot.com",
+  });
 
   aurelia.start().then(() => aurelia.setRoot());
 }

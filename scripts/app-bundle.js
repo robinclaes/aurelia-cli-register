@@ -1,18 +1,9 @@
-define('app',['exports', 'firebase', 'firebase'], function (exports, _firebase, firebase) {
+define('app',['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.App = undefined;
-
-  var _firebase2 = _interopRequireDefault(_firebase);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -24,13 +15,7 @@ define('app',['exports', 'firebase', 'firebase'], function (exports, _firebase, 
     function App() {
       _classCallCheck(this, App);
 
-      var config = {
-        apiKey: "AIzaSyCyLGcP7x7Jo3rEQFO1vzDLiknfrm_t_CU",
-        authDomain: "wolf-espressobar.firebaseapp.com",
-        databaseURL: "https://wolf-espressobar.firebaseio.com",
-        storageBucket: "wolf-espressobar.appspot.com"
-      };
-      firebase.initializeApp(config);
+      console.log(firebase.database());
     }
 
     App.prototype.configureRouter = function configureRouter(config, router) {
@@ -54,7 +39,7 @@ define('environment',["exports"], function (exports) {
     testing: true
   };
 });
-define('main',['exports', './environment'], function (exports, _environment) {
+define('main',['exports', './environment', 'firebase'], function (exports, _environment, _firebase) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -63,6 +48,8 @@ define('main',['exports', './environment'], function (exports, _environment) {
   exports.configure = configure;
 
   var _environment2 = _interopRequireDefault(_environment);
+
+  var _firebase2 = _interopRequireDefault(_firebase);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -85,8 +72,14 @@ define('main',['exports', './environment'], function (exports, _environment) {
 
     if (_environment2.default.testing) {
       aurelia.use.plugin('aurelia-testing');
-      aurelia.use.plugin('firebase');
     }
+
+    _firebase2.default.initializeApp({
+      apiKey: "AIzaSyCyLGcP7x7Jo3rEQFO1vzDLiknfrm_t_CU",
+      authDomain: "wolf-espressobar.firebaseapp.com",
+      databaseURL: "https://wolf-espressobar.firebaseio.com",
+      storageBucket: "wolf-espressobar.appspot.com"
+    });
 
     aurelia.start().then(function () {
       return aurelia.setRoot();
@@ -279,21 +272,13 @@ define('table-overview',['exports', 'firebase'], function (exports, _firebase) {
     return TableOverview;
   }();
 });
-define('components/bill',['exports', 'aurelia-framework', 'aurelia-router', 'firebase'], function (exports, _aureliaFramework, _aureliaRouter, _firebase) {
+define('components/bill',['exports', 'aurelia-framework', 'aurelia-router'], function (exports, _aureliaFramework, _aureliaRouter) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
   exports.Bill = undefined;
-
-  var _firebase2 = _interopRequireDefault(_firebase);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -358,7 +343,7 @@ define('components/bill',['exports', 'aurelia-framework', 'aurelia-router', 'fir
     }
 
     Bill.prototype.removeBill = function removeBill() {
-      var billRef = _firebase2.default.database().ref('bills/' + this.id);
+      var billRef = firebase.database().ref('bills/' + this.id);
       billRef.remove();
       this.router.navigateToRoute('table-overview');
     };
@@ -454,21 +439,13 @@ define('components/order-details',['exports', 'aurelia-framework'], function (ex
     }
   })), _class);
 });
-define('components/order',['exports', 'aurelia-framework', 'aurelia-router', 'firebase'], function (exports, _aureliaFramework, _aureliaRouter, _firebase) {
+define('components/order',['exports', 'aurelia-framework', 'aurelia-router'], function (exports, _aureliaFramework, _aureliaRouter) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
   exports.Order = undefined;
-
-  var _firebase2 = _interopRequireDefault(_firebase);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -537,7 +514,7 @@ define('components/order',['exports', 'aurelia-framework', 'aurelia-router', 'fi
     Order.prototype.placeOrder = function placeOrder() {
       if (this.id) {
         this.order.time = new Date().toTimeString().split(' ')[0];
-        var ordersRef = _firebase2.default.database().ref('bills/' + this.id + '/orders');
+        var ordersRef = firebase.database().ref('bills/' + this.id + '/orders');
         ordersRef.push(JSON.parse(JSON.stringify(this.order)));
         this.router.navigateToRoute('table-details', { id: this.id });
       }
@@ -628,21 +605,13 @@ define('components/product',['exports', 'aurelia-framework'], function (exports,
     }
   })), _class);
 });
-define('components/table-card',['exports', 'aurelia-framework', 'aurelia-router', 'firebase'], function (exports, _aureliaFramework, _aureliaRouter, _firebase) {
+define('components/table-card',['exports', 'aurelia-framework', 'aurelia-router'], function (exports, _aureliaFramework, _aureliaRouter) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
   exports.TableCard = undefined;
-
-  var _firebase2 = _interopRequireDefault(_firebase);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -709,7 +678,7 @@ define('components/table-card',['exports', 'aurelia-framework', 'aurelia-router'
     TableCard.prototype.attached = function attached() {
       var _this = this;
 
-      var billRef = _firebase2.default.database().ref('bills/' + this.table.name);
+      var billRef = firebase.database().ref('bills/' + this.table.name);
       billRef.once('value', function (snapshot) {
         if (snapshot.exists()) {
           _this.isFree = false;
@@ -1412,8 +1381,8 @@ module.exports = firebase.storage;
 
 define('text!app.html', ['module'], function(module) { module.exports = "<template>\r\n  <require from=\"./sass/main.css\"></require>\r\n  <div class=\"container-fluid\">\r\n    <router-view></router-view>\r\n  </div>\r\n</template>\r\n"; });
 define('text!new-order.html', ['module'], function(module) { module.exports = "<template>\r\n  <require from=\"./components/bill\"></require>\r\n  <require from=\"./components/order\"></require>\r\n  <require from=\"./components/product\"></require>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n      <a click.trigger=\"back()\"><i class=\"fa fa-arrow-circle-left fa-4x btn-menu\" aria-hidden=\"true\"></i></a>\r\n\r\n      <h1>Nieuwe bestelling voor tafel ${tableId}</h1>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-9\">\r\n    <product repeat.for=\"product of products\" product.bind=\"product\" click.trigger=\"addProduct(product)\"></product>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <order order.two-way=\"order\" id.bind=\"tableId\"></new-order>\r\n    </div>\r\n  </div>\r\n</template>\r\n"; });
-define('text!table-details.html', ['module'], function(module) { module.exports = "<template>\r\n  <require from=\"./components/bill\"></require>\r\n  <require from=\"./components/order-details\"></require>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n      <a click.trigger=\"back()\"><i class=\"fa fa-arrow-circle-left fa-4x btn-menu\" aria-hidden=\"true\"></i></a>\r\n      <a click.trigger=\"newOrder()\"><i class=\"fa fa-plus-circle fa-4x btn-menu\" aria-hidden=\"true\"></i></a>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <order-details repeat.for=\"order of bill.orders | objectKeys\" order.bind=\"order\"></order>\r\n    </div>\r\n    <div class=\"col-sm-4\">\r\n      <bill bill.bind=\"bill\" id.bind=\"tableId\">\r\n      </bill>\r\n    </div>\r\n  </div>\r\n</template>\r\n"; });
 define('text!sass/main.css', ['module'], function(module) { module.exports = "body {\n  color: #FFF;\n  background-image: url(\"../images/bg.png\");\n  background-size: cover;\n  font-family: 'Comfortaa', cursive; }\n\na {\n  color: rgba(255, 255, 255, 0.4); }\n  a:hover {\n    color: rgba(255, 255, 255, 0.8); }\n\nbutton {\n  border-radius: 0px !important; }\n\n.btn-menu {\n  padding-right: 10px;\n  padding-top: 10px; }\n\n.btn-sm.btn-default {\n  height: 100%; }\n\n.btn-default {\n  background: rgba(0, 0, 0, 0.4);\n  color: #FFF;\n  height: 15vh; }\n  .btn-default:hover {\n    background: rgba(0, 0, 0, 0.8);\n    color: #FFF; }\n\n.btn-table {\n  margin: 20px 0;\n  color: white;\n  border: 1px solid white;\n  height: 19vh;\n  background: rgba(255, 255, 255, 0.4);\n  font-size: 6vh; }\n  .btn-table:hover {\n    background: rgba(255, 255, 255, 0.8); }\n\n.btn-product {\n  margin: 20px 0;\n  color: white;\n  border: 1px solid white;\n  height: 12vh;\n  background: rgba(255, 255, 255, 0.4);\n  font-size: 3vh; }\n  .btn-product:hover {\n    background: rgba(255, 255, 255, 0.8); }\n\n.btn-occupied {\n  background: rgba(133, 171, 203, 0.4); }\n  .btn-occupied:hover {\n    background: rgba(133, 171, 203, 0.8);\n    color: white; }\n\n.panel {\n  margin: 10px 0;\n  background: transparent;\n  border-radius: 0; }\n  .panel .panel-body {\n    background: rgba(255, 255, 255, 0.4);\n    padding: 5px; }\n  .panel .panel-footer {\n    padding: 5px 5px;\n    margin: 0;\n    background: rgba(255, 255, 255, 0.4); }\n\n.table {\n  margin: 0; }\n  .table thead {\n    font-weight: bold; }\n  .table td {\n    background: rgba(255, 255, 255, 0.8);\n    color: #000; }\n"; });
+define('text!table-details.html', ['module'], function(module) { module.exports = "<template>\r\n  <require from=\"./components/bill\"></require>\r\n  <require from=\"./components/order-details\"></require>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n      <a click.trigger=\"back()\"><i class=\"fa fa-arrow-circle-left fa-4x btn-menu\" aria-hidden=\"true\"></i></a>\r\n      <a click.trigger=\"newOrder()\"><i class=\"fa fa-plus-circle fa-4x btn-menu\" aria-hidden=\"true\"></i></a>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <order-details repeat.for=\"order of bill.orders | objectKeys\" order.bind=\"order\"></order>\r\n    </div>\r\n    <div class=\"col-sm-4\">\r\n      <bill bill.bind=\"bill\" id.bind=\"tableId\">\r\n      </bill>\r\n    </div>\r\n  </div>\r\n</template>\r\n"; });
 define('text!table-overview.html', ['module'], function(module) { module.exports = "<template>\r\n    <require from=\"./components/table-card\"></require>\r\n\r\n    <div class=\"row\">\r\n      <table-card repeat.for=\"table of tables\" table.bind=\"table\"></table-card>\r\n    </div>\r\n</template>\r\n"; });
 define('text!components/bill.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n  <div class=\"panel panel-default\">\r\n    <div class=\"panel-body\">\r\n      <h1 class=\"text-center\" if.bind=\"bill\">&euro; ${bill.totalAmount | euro}</h1>\r\n    </div>\r\n    <div class=\"panel-footer\">\r\n        <button class=\"btn btn-block btn-default\" click.trigger=\"checkout()\"><i class=\"fa fa-shopping-basket fa-3x\"></i></button>\r\n        <button class=\"btn btn-block btn-default\" click.trigger=\"removeBill()\"><i class=\"fa fa-trash fa-3x\"></i></button>\r\n    </div>\r\n  </div>\r\n</template>\r\n"; });
 define('text!components/order-details.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n  <div class=\"panel panel-default\">\r\n    <div class=\"panel-body\">\r\n      <table class=\"table table-bordered\">\r\n        <thead>\r\n          <tr>\r\n            <td>Product</td>\r\n            <td>Aantal</td>\r\n            <td>Prijs</td>\r\n            <td class=\"text-right\">Totaal</td>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr repeat.for=\"product of order.products\">\r\n            <td>${product.name}</td>\r\n            <td>${product.amount}</td>\r\n            <td>&euro; ${product.price | euro}</td>\r\n            <td class=\"text-right\">&euro; ${product.amount * product.price | euro}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n    <div class=\"panel-footer clearfix\" if.bind=\"order.time\">\r\n      <span>Bestelling geplaatst om ${order.time}.</span>\r\n      <div class=\"pull-right\">\r\n        <button class=\"btn btn-sm btn-default\"><i class=\"fa fa-pencil\"></i></button>\r\n        <button class=\"btn btn-sm btn-default\"><i class=\"fa fa-trash\"></i></button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</template>\r\n"; });

@@ -1,7 +1,6 @@
 import {bindable} from 'aurelia-framework';
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import firebase from 'firebase';
 
 @inject(Router)
 export class TableCard{
