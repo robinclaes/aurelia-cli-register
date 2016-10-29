@@ -10,6 +10,7 @@
   </div>
   <div class="row">
     <div class="col-sm-8">
+      <span if.bind="!bill.orders">Geen bestellingen gevonden.</span>
       <order-details repeat.for="order of bill.orders | objectKeys" order.bind="order"></order>
     </div>
     <div class="col-sm-4">

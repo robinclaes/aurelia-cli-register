@@ -1,6 +1,5 @@
 export class App {
   constructor(){
-    console.log(firebase.database());
   }
 
   configureRouter(config, router) {
