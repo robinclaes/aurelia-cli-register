@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-sm-8">
       <span if.bind="!bill.orders">Geen bestellingen gevonden.</span>
-      <order-details repeat.for="order of bill.orders | objectKeys" order.bind="order"></order>
+      <order-details if.bind="bill.orders" repeat.for="order of bill.orders | objectKeys" order.bind="bill.orders[order]" order-id.bind="order"></order>
     </div>
     <div class="col-sm-4">
       <bill bill.bind="bill" id.bind="tableId">

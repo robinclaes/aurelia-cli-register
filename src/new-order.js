@@ -1,6 +1,5 @@
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import firebase from 'firebase';
 
 @inject(Router)
 export class NewOrder {
@@ -17,9 +16,9 @@ export class NewOrder {
 
   activate(params){
     params.id ? this.tableId = params.id : this.router.navigateToRoute("table-overview");
-    var productsRef = firebase.database().ref('products');
-    productsRef.once('value', snapshot => {
-      this.products = snapshot.val();
+    var categoriesRef = firebase.database().ref('categories');
+    categoriesRef.once('value', snapshot => {
+      this.categories = snapshot.val();
     });
 
   }

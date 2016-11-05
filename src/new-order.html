@@ -1,21 +1,23 @@
 <template>
-  <require from="./components/bill"></require>
-  <require from="./components/order"></require>
-  <require from="./components/product"></require>
+	<require from="./components/bill"></require>
+	<require from="./components/order"></require>
+	<require from="./components/product"></require>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <a click.trigger="back()"><i class="fa fa-arrow-circle-left fa-4x btn-menu" aria-hidden="true"></i></a>
+	<div class="row">
+		<div class="col-sm-12">
+			<a click.trigger="back()"><i class="fa fa-arrow-circle-left fa-4x btn-menu" aria-hidden="true"></i></a>
 
-      <h1>Nieuwe bestelling voor tafel ${tableId}</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-9">
-    <product repeat.for="product of products" product.bind="product" click.trigger="addProduct(product)"></product>
-    </div>
-    <div class="col-sm-3">
-      <order order.two-way="order" id.bind="tableId"></new-order>
-    </div>
-  </div>
+			<h1>Nieuwe bestelling voor tafel ${tableId}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-9">
+			<button class="btn btn-block btn-product" repeat.for="category of categories" click.trigger="activeCategory = category">${category.name}</button>
+			<product repeat.for="product of activeCategory.products" product.bind="product" click.trigger="addProduct(product)"></product>
+		</div>
+		<div class="col-sm-3">
+			<order order.two-way="order" id.bind="tableId">
+				</new-order>
+		</div>
+	</div>
 </template>

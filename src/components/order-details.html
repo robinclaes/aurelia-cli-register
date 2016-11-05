@@ -1,7 +1,7 @@
 <template>
-
   <div class="panel panel-default">
     <div class="panel-body">
+      Order: ${orderId}
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -25,7 +25,7 @@
       <span>Bestelling geplaatst om ${order.time}.</span>
       <div class="pull-right">
         <button class="btn btn-sm btn-default"><i class="fa fa-pencil"></i></button>
-        <button class="btn btn-sm btn-default"><i class="fa fa-trash"></i></button>
+        <button class="btn btn-sm btn-default" click.trigger="removeOrder(orderId)"><i class="fa fa-trash"></i></button>
       </div>
     </div>
   </div>
