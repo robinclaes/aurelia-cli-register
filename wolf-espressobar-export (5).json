@@ -1,0 +1,96 @@
+{
+  "options": [
+    {
+      "description": "Zonder slagroom"
+    },
+    {
+      "description": "Met caramel"
+    },
+    {
+      "description": "Met chocolade"
+    },
+    {
+      "description": "Met witte chocolade"
+    },
+    {
+      "description": "Extra espresso"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Koffie",
+      "products": [
+        {
+          "name": "Lungo",
+          "price": 2.2
+        },
+        {
+          "name": "Cappuccino",
+          "price": 2.6
+        }
+      ]
+    },
+    {
+      "name": "Frisdranken",
+      "products": [
+        {
+          "name": "Fritz Kola",
+          "price": 2.2
+        },
+        {
+          "name": "Violetta",
+          "price": 1.8
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "isVisible": true,
+      "name": "B1"
+    },
+    {
+      "isVisible": true,
+      "name": "B2"
+    },
+    {
+      "isVisible": true,
+      "name": "B3"
+    },
+    {
+      "isVisible": true,
+      "name": "4"
+    },
+    {
+      "isVisible": false
+    },
+    {
+      "isVisible": true,
+      "name": "9"
+    },
+    {
+      "isVisible": true,
+      "name": "3"
+    },
+    {
+      "isVisible": true,
+      "name": "7"
+    },
+    {
+      "isVisible": true,
+      "name": "8b"
+    },
+    {
+      "isVisible": true,
+      "name": "1"
+    },
+    {
+      "isVisible": true,
+      "name": "5"
+    },
+    {
+      "isVisible": true,
+      "name": "TOOG"
+    }
+  ]
+}
